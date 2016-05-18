@@ -19,7 +19,7 @@ public class JacksonFactory {
 		defaultObjectMapper = createDefaultMapper();
 	}
 
-	@Bean
+	@Bean(name="objectMapper")
 	public ObjectMapper getObjectMapper(){
 		return defaultObjectMapper;
 	}
@@ -29,6 +29,7 @@ public class JacksonFactory {
 		result.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		result.configure(SerializationFeature.INDENT_OUTPUT, true);
 		result.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+
 		return result;
 	}
 }

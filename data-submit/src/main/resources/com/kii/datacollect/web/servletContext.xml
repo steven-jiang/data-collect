@@ -23,7 +23,6 @@
         <property name="port" value="6379" />
      </bean>
 
-
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.StringRedisTemplate"   >
         <property name="connectionFactory" ref="lettuceConnFactory" />
