@@ -1,0 +1,10 @@
+
+ext {
+	wekaVersion = "3.8.0"
+}
+
+dependencies {
+
+	compile "nz.ac.waikato.cms.weka:weka-stable:${wekaVersion}"
+
+}

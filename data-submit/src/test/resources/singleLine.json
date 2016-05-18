@@ -1,0 +1,4 @@
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"},
+  "timestamp": 122334564322,"target":
+["车位摄像头001", "车位感应器,0001"]
+}

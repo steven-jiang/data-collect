@@ -1,0 +1,35 @@
+
+
+ext {
+	jacksonVersion="2.7.4"
+	log4jVersion="2.3"
+}
+
+allprojects {
+
+	group 'data-analysis'
+	version '1.0-SNAPSHOT'
+
+	apply plugin: 'java'
+
+	sourceCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+
+		compile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+		compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+		compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+		compile "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}"
+		compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+		compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+
+		testCompile group: 'junit', name: 'junit', version: '4.11'
+
+
+	}
+}

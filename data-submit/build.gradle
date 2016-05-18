@@ -1,0 +1,31 @@
+
+apply plugin: 'war'
+
+ext {
+	tomcatVersion = "8.0.1"
+	springVersion = "4.2.6.RELEASE"
+	mockVersion="1.6.2"
+}
+
+dependencies {
+
+	compile "org.apache.logging.log4j:log4j-web:${log4jVersion}"
+
+	compile "org.springframework:spring-web:${springVersion}"
+	compile "org.springframework.data:spring-data-redis:1.7.1.RELEASE"
+
+	compile "biz.paluch.redis:lettuce:3.4.2.Final"
+
+	testCompile "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
+	testCompile "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+	testCompile "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+	testCompile "org.springframework:spring-test:${springVersion}"
+
+	testCompile "org.powermock:powermock-api-mockito:${mockVersion}"
+	testCompile "org.powermock:powermock-module-junit4:${mockVersion}"
+	testCompile "org.powermock:powermock-module-junit4-rule:${mockVersion}"
+	testCompile "org.mockito:mockito-core:1.10.18"
+
+	providedCompile group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
+
+}

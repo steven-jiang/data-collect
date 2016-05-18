@@ -1,0 +1,13 @@
+
+ext {
+	sparkVersion = "1.6.1"
+	sparkStreamVer="2.10"
+}
+
+
+dependencies {
+	compile "org.apache.spark:spark-streaming_${sparkStreamVer}:${sparkVersion}"
+	compile "org.apache.spark:spark-sql_${sparkStreamVer}:${sparkVersion}"
+
+
+}
