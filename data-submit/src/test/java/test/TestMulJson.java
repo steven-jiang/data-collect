@@ -4,6 +4,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Matchers.eq;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StreamUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 
 import com.kii.datacollect.service.DataStoreService;
+import com.kii.datacollect.service.JsonMapper;
 import com.kii.datacollect.service.TokenService;
 import com.kii.datacollect.store.DataEntity;
 import com.kii.datacollect.web.controller.DataSubmitController;
@@ -36,9 +37,12 @@ public class TestMulJson extends TestTemplate {
 
 	@Mock
 	private TokenService  tokenService;
-
+//
+//	@Spy
+//	private ObjectMapper mapper;
+//
 	@Spy
-	private ObjectMapper mapper;
+	private JsonMapper  mapper;
 
 	@Autowired
 	private ResourceLoader loader;
@@ -56,13 +60,21 @@ public class TestMulJson extends TestTemplate {
 	@Test
 	public void testJson() throws IOException {
 
-		String json= StreamUtils.copyToString(loader.getResource("classpath:singleLine.json").getInputStream(), Charsets.UTF_8);
+		String json = StreamUtils.copyToString(loader.getResource("classpath:singleLine.json").getInputStream(), Charsets.UTF_8);
 
-		DataEntity  entity=mapper.readValue(json,DataEntity.class);
+		DataEntity entity = mapper.readValue(json, DataEntity.class);
 
-		assertEquals(entity.getId(),"001");
+		assertEquals(entity.getId(), "001");
 
-		assertEquals(entity.getData().toString(),"{\"本月停车次数\":3,\"sourceType\":\"车辆号牌\",\"actionType\":\"进车位\",\"actionDetail\":\"车位001\"}");
+		Map<String, Object> map = entity.getDataInFlatJson().getValues();
+
+		assertEquals(3,map.get("本月停车次数"));
+		assertEquals("车辆号牌",map.get("sourceType"));
+
+		json=mapper.writeObjectAsString(entity);
+
+		System.out.println(json);
+
 	}
 
 	@Test

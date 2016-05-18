@@ -49,4 +49,22 @@ public class JsonMapper {
 			throw new JsonException(e);
 		}
 	}
+
+	public String writeObjectAsString(Object entity) {
+
+		try {
+			return mapper.writeValueAsString(entity);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			throw new JsonException(e);
+		}	}
+
+	public Map<String,Object> readValueToMap(String json) {
+		try {
+			return mapper.readValue(json,Map.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new JsonException(e);
+		}
+	}
 }

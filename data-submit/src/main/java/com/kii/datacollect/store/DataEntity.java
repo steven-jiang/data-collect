@@ -1,12 +1,14 @@
 package com.kii.datacollect.store;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import com.kii.datacollect.com.kii.datacollect.util.FlatJsonTool;
 
 public class DataEntity implements Serializable{
 
@@ -24,7 +26,17 @@ public class DataEntity implements Serializable{
 
 	private long timeStamp;
 
-	private Set<String>  target;
+	private String from;
+
+	private JsonNode  target;
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
 
 	public String getId() {
 		return id;
@@ -67,13 +79,19 @@ public class DataEntity implements Serializable{
 	}
 
 
-	public JsonNode getData() {
-		return data;
+	@JsonUnwrapped()
+	public WrapEntity getDataInFlatJson() {
+
+		return FlatJsonTool.flatJsonNode(data,"data");
 	}
 
-	@JsonRawValue
-	public void setData(JsonNode data) {
+	@JsonProperty("data")
+	public void setDataInJson(JsonNode data) {
+
+
 		this.data = data;
+
+
 	}
 
 	@JsonProperty("timestamp")
@@ -85,12 +103,15 @@ public class DataEntity implements Serializable{
 		this.timeStamp = timeStamp;
 	}
 
-	public Set<String> getTarget() {
-		return target;
+	@JsonUnwrapped()
+	public WrapEntity getTargetInFlatJson() {
+
+		return FlatJsonTool.flatJsonNode(target,"target");
 	}
 
-	public void setTarget(Set<String> target) {
-		this.target = target;
+	@JsonProperty("target")
+	public void setTarget(JsonNode node) {
+		this.target = node;
 	}
 
 	@Override

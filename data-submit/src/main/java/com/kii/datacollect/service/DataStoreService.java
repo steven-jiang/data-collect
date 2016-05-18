@@ -13,6 +13,7 @@ import com.kii.datacollect.store.DataEntity;
 @Repository
 public class DataStoreService {
 
+	private static final String TABLE_NAME = "DATA_LIST";
 	@Qualifier("dataEntityRedisTemplate")
 	@Autowired
 	private RedisTemplate<String,DataEntity>  template;
@@ -29,9 +30,10 @@ public class DataStoreService {
 		if(StringUtils.isEmpty(entity.getId())){
 			entity.setId(getUUID(name));
 		}
+		entity.setFrom(name);
 
 
-		template.boundListOps(name+"_LIST").rightPush(entity);
+		template.boundListOps(TABLE_NAME).rightPush(entity);
 
 	}
 
@@ -41,10 +43,11 @@ public class DataStoreService {
 		entitys.forEach((e)->{
 			if(StringUtils.isEmpty(e.getId())) {
 				e.setId(getUUID(name));
+				e.setFrom(name);
 			}
 		});
 
-		template.boundListOps(name+"_LIST").rightPushAll(entitys.toArray(new DataEntity[0]));
+		template.boundListOps(TABLE_NAME).rightPushAll(entitys.toArray(new DataEntity[0]));
 	}
 
 }

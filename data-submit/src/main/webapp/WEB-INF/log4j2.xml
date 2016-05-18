@@ -6,6 +6,7 @@
         </Console>
     </Appenders>
     <Loggers>
+        <Logger name="com.fasterxml.jackson.databind" level="DEBUG"/>
         <Logger name="org.springframework.data.redis" level="DEBUG"/>
         <Root level="INFO">
             <AppenderRef ref="Console"/>
