@@ -1,6 +1,7 @@
 package com.kii.datacollect.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.DigestUtils;
@@ -11,8 +12,10 @@ public class TokenService {
 	private static final String TOKEN_STORE = "TOKEN_STORE";
 
 
+	@Qualifier("stringRedisTemplate")
 	@Autowired
 	private RedisTemplate template;
+
 
 
 	public String queryNameByToken(String token){

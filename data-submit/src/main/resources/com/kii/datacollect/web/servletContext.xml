@@ -23,9 +23,22 @@
         <property name="port" value="6379" />
      </bean>
 
-    <bean id="redisTemplate"
+    <bean id="stringRedisTemplate"
           class="org.springframework.data.redis.core.StringRedisTemplate"   >
         <property name="connectionFactory" ref="lettuceConnFactory" />
     </bean>
+
+
+    <bean id="dataEntityRedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="lettuceConnFactory" />
+        <property name="valueSerializer">
+            <bean id="redisJsonSerializer"
+                  class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer">
+                <constructor-arg type="java.lang.Class" value="com.kii.datacollect.store.DataEntity"/>
+                <property name="objectMapper" ref="compactObjectMapper" />
+            </bean>
+        </property>
+    </bean>
+
 
 </beans>

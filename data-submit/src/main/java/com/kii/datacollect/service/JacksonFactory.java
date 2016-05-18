@@ -12,24 +12,27 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @Configuration
 public class JacksonFactory {
 
-	final ObjectMapper defaultObjectMapper;
+
+	final ObjectMapper compactObjectMapper;
 
 
 	public JacksonFactory() {
-		defaultObjectMapper = createDefaultMapper();
+
+		compactObjectMapper=createCompactMapper();
 	}
 
-	@Bean(name="objectMapper")
-	public ObjectMapper getObjectMapper(){
-		return defaultObjectMapper;
+	@Bean(name="compactObjectMapper")
+	public ObjectMapper getCompactObjectMapper(){
+		return compactObjectMapper;
 	}
 
-	private static ObjectMapper createDefaultMapper() {
+
+
+	private static ObjectMapper createCompactMapper() {
 		final ObjectMapper result = new ObjectMapper();
-		result.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		result.configure(SerializationFeature.INDENT_OUTPUT, true);
+		result.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+		result.configure(SerializationFeature.INDENT_OUTPUT, false);
 		result.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
-
 		return result;
 	}
 }

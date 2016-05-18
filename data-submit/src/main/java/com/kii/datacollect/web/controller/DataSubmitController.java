@@ -1,7 +1,6 @@
 package com.kii.datacollect.web.controller;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.kii.datacollect.service.DataStoreService;
+import com.kii.datacollect.service.JsonException;
+import com.kii.datacollect.service.JsonMapper;
 import com.kii.datacollect.service.TokenService;
 import com.kii.datacollect.store.DataEntity;
 
@@ -24,7 +22,7 @@ public class DataSubmitController implements AbstractController{
 
 
 	@Autowired
-	private ObjectMapper mapper;
+	private JsonMapper mapper;
 
 	@Autowired
 	private DataStoreService  dataService;
@@ -80,18 +78,15 @@ public class DataSubmitController implements AbstractController{
 			input=StringUtils.replace(input,"\n","");
 
 			return mapper.readValue(input,DataEntity.class);
-		} catch (IOException e) {
+		} catch (JsonException e) {
 
 			Map<String,Object> map=new HashMap<>();
 			map.put("errorCode","INVALID_FORMAT");
 			map.put("errorMsg",e.getMessage());
 
 			String jsonErr= "{}";
-			try {
-				jsonErr = mapper.writeValueAsString(map);
-			} catch (JsonProcessingException e1) {
-				e1.printStackTrace();
-			}
+			jsonErr = mapper.writeValueAsString(map);
+
 
 			throw new IllegalArgumentException(jsonErr);
 		}
