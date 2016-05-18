@@ -40,6 +40,7 @@ public class TestFullDataService extends TestTemplate {
 
 		Map<String,String> params=new HashMap<>();
 		params.put("userName","MOCK_USER");
+		params.put("token",token);
 		String json=mapper.writeValueAsString(params);
 
 		tokenController.doPost(json,token);
