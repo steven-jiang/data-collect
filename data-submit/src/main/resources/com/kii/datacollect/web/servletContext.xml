@@ -8,9 +8,9 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- bean   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:com/kii/beehive/portal/web/config.${spring.profile}.properties"/>
-    </bean  -->
+    <bean   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:com/kii/datacollect//web/config.properties"/>
+    </bean>
 
     <context:annotation-config/>
 

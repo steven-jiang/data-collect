@@ -1,4 +1,9 @@
-{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"},
-  "timestamp": 122334564322,"target":
-["车位摄像头001", "车位感应器,0001"]
-}
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f61"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f62"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f63"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f64"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f65"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":"a1b2c3d4e5f66"},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":""},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":""},
+{"id": "001","source": "abc","data": {"本月停车次数":3,"sourceType":"车辆号牌","actionType":"进车位","actionDetail": "车位001"}, "timestamp": 122334564322,"target":""},

@@ -1,4 +1,4 @@
-package com.kii.datacollect.service;
+package com.kii.datacollect.factory;
 
 
 import org.springframework.context.annotation.Bean;

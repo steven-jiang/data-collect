@@ -1,14 +1,13 @@
 package com.kii.datacollect.store;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import com.kii.datacollect.com.kii.datacollect.util.FlatJsonTool;
 
 public class DataEntity implements Serializable{
 
@@ -24,7 +23,7 @@ public class DataEntity implements Serializable{
 
 	private JsonNode data;
 
-	private long timeStamp;
+	private Date timeStamp;
 
 	private String from;
 
@@ -82,7 +81,8 @@ public class DataEntity implements Serializable{
 	@JsonUnwrapped()
 	public WrapEntity getDataInFlatJson() {
 
-		return FlatJsonTool.flatJsonNode(data,"data");
+//		return FlatJsonTool.flatJsonNode(data,"data");
+		return null;
 	}
 
 	@JsonProperty("data")
@@ -95,18 +95,19 @@ public class DataEntity implements Serializable{
 	}
 
 	@JsonProperty("timestamp")
-	public long getTimeStamp() {
+	public Date getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(long timeStamp) {
+	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
 	@JsonUnwrapped()
 	public WrapEntity getTargetInFlatJson() {
 
-		return FlatJsonTool.flatJsonNode(target,"target");
+//		return FlatJsonTool.flatJsonNode(target,"target");
+		return null;
 	}
 
 	@JsonProperty("target")

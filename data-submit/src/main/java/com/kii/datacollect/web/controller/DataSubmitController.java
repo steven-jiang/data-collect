@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,42 +31,21 @@ public class DataSubmitController implements AbstractController{
 
 
 
-	private Pattern linePat=Pattern.compile("\\}\\s*(,|\r\n)\\s*\\{",Pattern.MULTILINE);
 
 	@Override
 	public void  doPost(String input,String token){
 
 		String name=tokenService.queryNameByToken(token);
 
-		if(linePat.matcher(input).find()){
+		String[] jsonArray=mapper.splitMuiJson(input);
 
-			String[] jsonArray=linePat.split(input);
-
-			for(int i=0;i<jsonArray.length;i++){
-
-				if(i==0){
-					jsonArray[i]=jsonArray[i]+"}";
-				}else if(i==jsonArray.length-1){
-					jsonArray[i]="{"+jsonArray[i];
-				}else{
-					jsonArray[i]="{"+jsonArray[i]+"}";
-				}
-			}
-
-			List<DataEntity> entitys=new ArrayList<>();
-			for(String json:jsonArray){
+		List<DataEntity> entitys=new ArrayList<>();
+		for(String json:jsonArray){
 				entitys.add(generData(json));
-			}
-
-			dataService.storeData(name,entitys);
-
-		}else{
-
-			DataEntity entity=generData(input);
-
-			dataService.storeData(name,entity);
-
 		}
+
+		dataService.storeData(name,entitys);
+
 		return;
 
 	}

@@ -5,6 +5,8 @@ ext {
 	tomcatVersion = "8.0.1"
 	springVersion = "4.2.6.RELEASE"
 	mockVersion="1.6.2"
+	mysqlVersion = "6.0.2"
+
 }
 
 dependencies {
@@ -13,6 +15,8 @@ dependencies {
 
 	compile "org.springframework:spring-web:${springVersion}"
 	compile "org.springframework.data:spring-data-redis:1.7.1.RELEASE"
+
+	compile "mysql:mysql-connector-java:${mysqlVersion}"
 
 	compile "biz.paluch.redis:lettuce:3.4.2.Final"
 
