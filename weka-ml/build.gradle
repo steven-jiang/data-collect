@@ -1,10 +1,26 @@
 
 ext {
+
 	wekaVersion = "3.8.0"
+
+	mysqlVersion = "6.0.2"
+
+	jacksonVersion = "2.6.3"
+
+
 }
 
 dependencies {
 
+
+	compile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+	compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+
 	compile "nz.ac.waikato.cms.weka:weka-stable:${wekaVersion}"
+
+	compile  "mysql:mysql-connector-java:${mysqlVersion}"
+
 
 }
