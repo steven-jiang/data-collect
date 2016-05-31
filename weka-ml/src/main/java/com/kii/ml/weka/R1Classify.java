@@ -3,7 +3,7 @@ package com.kii.ml.weka;
 import java.util.Arrays;
 
 import weka.classifiers.Classifier;
-import weka.classifiers.rules.OneR;
+import weka.classifiers.rules.DecisionTable;
 import weka.core.Instance;
 import weka.core.Instances;
 
@@ -12,16 +12,16 @@ public class R1Classify {
 
 	private Classifier classifier;
 
-
-	public R1Classify() {
-
-
-		DBLoader loader = new DBLoader();
-
-		Instances inst = loader.getInstance();
+	private DBLoader loader ;
 
 
-		classifier = new OneR();
+	public R1Classify(String metaName) {
+
+		loader = new DBLoader(metaName+".arff");
+
+		Instances inst = loader.getInstance("SELECT * FROM "+metaName);
+
+		classifier = new DecisionTable();
 
 		try {
 			classifier.buildClassifier(inst);
@@ -32,9 +32,9 @@ public class R1Classify {
 	}
 
 
-	public String doTest(WeatherEntity entity)  {
+	public String doTest(  TestEntity entity)  {
 
-		Instance inst = entity.getInstance();
+		Instance inst = entity.getInstance(loader.getMetaInstance());
 
 		try {
 

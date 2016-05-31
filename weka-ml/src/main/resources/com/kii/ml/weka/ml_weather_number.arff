@@ -1,0 +1,9 @@
+@relation ml_weather_number
+
+@attribute outlook {sunny, overcast, rainy}
+@attribute temperature numeric
+@attribute humidity numeric
+@attribute windy {TRUE, FALSE}
+@attribute play {Yes, No}
+
+@data

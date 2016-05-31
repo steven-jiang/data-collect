@@ -11,6 +11,8 @@ ext {
 
 dependencies {
 
+
+
 	compile "org.apache.logging.log4j:log4j-web:${log4jVersion}"
 
 	compile "org.springframework:spring-web:${springVersion}"

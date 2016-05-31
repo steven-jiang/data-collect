@@ -4,32 +4,17 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 
-public class WeatherEntity implements  TestEntity{
-
-
-	/*
-	@attribute outlook {sunny, overcast, rainy}
-@attribute temperature {hot, mild, cool}
-@attribute humidity {high, normal}
-@attribute windy {FALSE, TRUE}
-@attribute play {Yes, No}
-	 */
+public class WeatherNumEntity implements  TestEntity{
 
 	private String outlook;
 
-	private String temperature;
+	private float temperature;
 
-	private String humidity;
+	private int humidity;
 
 	private String windy;
 
-	private String play;
-
-	public String getOutlook() {
-		return outlook;
-	}
-
-	public Instance  getInstance(Instances meta){
+	public Instance getInstance(Instances meta){
 
 		Instance inst=new DenseInstance(5);
 		inst.setDataset(meta);
@@ -46,23 +31,28 @@ public class WeatherEntity implements  TestEntity{
 
 	}
 
+
+	public String getOutlook() {
+		return outlook;
+	}
+
 	public void setOutlook(String outlook) {
 		this.outlook = outlook;
 	}
 
-	public String getTemperature() {
+	public float getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(String temperature) {
+	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
 
-	public String getHumidity() {
+	public int getHumidity() {
 		return humidity;
 	}
 
-	public void setHumidity(String humidity) {
+	public void setHumidity(int humidity) {
 		this.humidity = humidity;
 	}
 
@@ -73,13 +63,4 @@ public class WeatherEntity implements  TestEntity{
 	public void setWindy(String windy) {
 		this.windy = windy;
 	}
-
-	public String getPlay() {
-		return play;
-	}
-
-	public void setPlay(String play) {
-		this.play = play;
-	}
 }
-

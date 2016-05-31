@@ -1,8 +1,9 @@
 package com.kii.ml.weka;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
-import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
 import weka.core.converters.DatabaseLoader;
@@ -14,33 +15,38 @@ public class DBLoader {
 
 	private ArffLoader   metaLoader;
 
-	public DBLoader(){
+	public DBLoader(String metaFileName){
+
+		metaLoader=getMetaLoader(metaFileName);
 
 		dbLoader=getLoader();
 
-		metaLoader=getMetaLoader();
 	}
 
-	public Instances getInstance(){
+	public Instances getMetaInstance(){
+
+		try {
+			Instances meta= 	metaLoader.getDataSet();
+
+			meta.setClassIndex(4);
+
+			return meta;
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	public Instances getInstance(String sql){
 
 
-		dbLoader.setQuery("SELECT * FROM beehive.ml_weather_nominal");
+
+
+		dbLoader.setQuery(sql);
 
 
 		try {
 			Instances  instances= dbLoader.getDataSet();
-
-
-			Instances  metaInst=metaLoader.getDataSet();
-
-
-			for(int i=0;i<metaInst.numAttributes();i++){
-
-				Attribute  attribute=metaInst.attribute(i);
-
-				instances.replaceAttributeAt(attribute,i);
-			}
-
 			instances.setClassIndex(4);
 
 			return instances;
@@ -56,11 +62,15 @@ public class DBLoader {
 		try {
 
 			DatabaseLoader  loader=new DatabaseLoader();
+
+			URL url=DBLoader.class.getClassLoader().getResource("weka/experiment/localDatabaseUtils.props");
+
+			loader.setCustomPropsFile(new File(url.toURI()));
 			loader.setPassword("beehive");
 			loader.setUser("beehive");
-			loader.setUrl("jdbc:mysql://localhost/beehive?Unicode=true&characterEncoding=utf8");
-			loader.connectToDatabase();
+			loader.setUrl("jdbc:mysql://localhost/beehive?Unicode=true&characterEncoding=utf8&useSSL=false");
 
+			loader.connectToDatabase();
 			return loader;
 
 		} catch (Exception e) {
@@ -70,13 +80,13 @@ public class DBLoader {
 	}
 
 
-	private static ArffLoader getMetaLoader(){
+	private static ArffLoader getMetaLoader(String metaFileName){
 
 		try {
 
 			ArffLoader  loader=new ArffLoader();
 
-			loader.setSource(DBLoader.class.getResourceAsStream("weather.arff"));
+			loader.setSource(DBLoader.class.getResourceAsStream(metaFileName));
 
 			return loader;
 

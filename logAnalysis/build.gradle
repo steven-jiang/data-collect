@@ -10,4 +10,5 @@ dependencies {
 	compile "org.apache.spark:spark-sql_${sparkStreamVer}:${sparkVersion}"
 
 
+
 }
