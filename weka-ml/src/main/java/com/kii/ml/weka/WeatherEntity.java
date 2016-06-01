@@ -1,10 +1,6 @@
 package com.kii.ml.weka;
 
-import weka.core.DenseInstance;
-import weka.core.Instance;
-import weka.core.Instances;
-
-public class WeatherEntity implements  TestEntity{
+public class WeatherEntity {
 
 
 	/*
@@ -29,22 +25,7 @@ public class WeatherEntity implements  TestEntity{
 		return outlook;
 	}
 
-	public Instance  getInstance(Instances meta){
 
-		Instance inst=new DenseInstance(5);
-		inst.setDataset(meta);
-
-//		inst.
-		inst.setValue(0,outlook);
-		inst.setValue(1,temperature);
-		inst.setValue(2,humidity);
-		inst.setValue(3,windy);
-//		inst.setValue(4,null);
-
-		return inst;
-
-
-	}
 
 	public void setOutlook(String outlook) {
 		this.outlook = outlook;

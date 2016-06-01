@@ -4,6 +4,6 @@
 @attribute temperature numeric
 @attribute humidity numeric
 @attribute windy {TRUE, FALSE}
-@attribute play {Yes, No}
+@attribute play {No, Yes}
 
 @data

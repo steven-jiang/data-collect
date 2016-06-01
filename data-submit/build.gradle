@@ -10,6 +10,8 @@ ext {
 }
 
 dependencies {
+	compile "org.apache.spark:spark-streaming_${sparkStreamVer}:${sparkVersion}"
+	compile "org.apache.spark:spark-sql_${sparkStreamVer}:${sparkVersion}"
 
 
 

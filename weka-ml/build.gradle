@@ -17,6 +17,7 @@ dependencies {
 //	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
 //	compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
 
 	compile "nz.ac.waikato.cms.weka:weka-stable:${wekaVersion}"
 

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 
 import weka.core.Instances;
-import weka.core.converters.ArffLoader;
 import weka.core.converters.DatabaseLoader;
 
 public class DBLoader {
@@ -13,41 +12,47 @@ public class DBLoader {
 
 	private DatabaseLoader  dbLoader;
 
-	private ArffLoader   metaLoader;
+	private int classIndex;
 
-	public DBLoader(String metaFileName){
-
-		metaLoader=getMetaLoader(metaFileName);
+	public DBLoader(String metaFileName,int classIndex){
 
 		dbLoader=getLoader();
 
+
+		dbLoader.setQuery("select * from "+metaFileName);
+
+		this.classIndex=classIndex;
+
 	}
 
-	public Instances getMetaInstance(){
 
-		try {
-			Instances meta= 	metaLoader.getDataSet();
+//	private Instances  metaInst;
+//
+//	public Instances getMetaInstance(){
+//		try{
+//
+//
+//			Instances meta= dbLoader.getStructure();
+//
+//			meta.setClassIndex(classIndex);
+//
+//			return meta;
+//		}catch(Exception e){
+//			throw new IllegalArgumentException(e);
+//		}
+//	}
 
-			meta.setClassIndex(4);
 
-			return meta;
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new IllegalArgumentException(e);
-		}
-	}
-
-	public Instances getInstance(String sql){
-
-
-
-
-		dbLoader.setQuery(sql);
-
+	public Instances getInstance(){
 
 		try {
 			Instances  instances= dbLoader.getDataSet();
-			instances.setClassIndex(4);
+
+			int idx=instances.attribute("id").index();
+
+
+			instances.deleteAttributeAt(idx);
+			instances.setClassIndex(classIndex);
 
 			return instances;
 		} catch (IOException e) {
@@ -79,22 +84,22 @@ public class DBLoader {
 		}
 	}
 
-
-	private static ArffLoader getMetaLoader(String metaFileName){
-
-		try {
-
-			ArffLoader  loader=new ArffLoader();
-
-			loader.setSource(DBLoader.class.getResourceAsStream(metaFileName));
-
-			return loader;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new IllegalArgumentException(e);
-		}
-	}
+//
+//	private static ArffLoader getMetaLoader(String metaFileName){
+//
+//		try {
+//
+//			ArffLoader  loader=new ArffLoader();
+//
+//			loader.setSource(DBLoader.class.getResourceAsStream(metaFileName));
+//
+//			return loader;
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new IllegalArgumentException(e);
+//		}
+//	}
 
 
 }

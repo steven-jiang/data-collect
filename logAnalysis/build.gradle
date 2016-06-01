@@ -1,7 +1,5 @@
 
 ext {
-	sparkVersion = "1.6.1"
-	sparkStreamVer="2.10"
 }
 
 
